@@ -9,17 +9,27 @@ class Block:
         self.data = data
         self.previous_hash = previous_hash
         self.hash = self.calculate_hash()
+        self.nonce = 0
 
     def calculate_hash(self):
         # Generate hash for this block using its content
         block_content = f"{self.index}{self.timestamp}{self.data}{self.previous_hash}"
         return hashlib.sha256(block_content.encode()).hexdigest()
 
+    def mine_block(self, difficulty):
+        # Perform proof of work to find a hash with leading zeros
+        target = "0" * difficulty
+        while self.hash[:difficulty] != target:
+            self.nonce += 1
+            self.hash = self.calculate_hash()
+        print(f"Block mined: {self.hash}")
+
 
 class Blockchain:
     def __init__(self):
         # Initialize block with the genesis block
         self.chain = [self.create_genesis_block()]
+        self.difficulty = 4
 
     def create_genesis_block(self):
         # Create the first block of the blockchain
@@ -38,6 +48,9 @@ class Blockchain:
             data=data,
             previous_hash=latest_block.hash,
         )
+        # Mine the block first before adding it
+        new_block.mine_block(self.difficulty)
+
         self.chain.append(new_block)
 
     def is_chain_valid(self):
@@ -67,7 +80,10 @@ my_blockchain = Blockchain()
 my_blockchain.add_block("First block after genesis")
 my_blockchain.add_block("Second block after genesis")
 
+# Print the chain
 for block in my_blockchain.chain:
-    print(f"Index: {block.index}, Data: {block.data}, Hash: {block.hash}")
+    print(
+        f"Index: {block.index}, Data: {block.data}, Hash: {block.hash}, Nonce: {block.nonce}"
+    )
 
 print(my_blockchain.is_chain_valid())
