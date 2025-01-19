@@ -23,7 +23,7 @@ This project demonstrates a simple blockchain implementation using Python. It in
 1. Clone this repository:
    ```bash
    git clone https://github.com/marcobantoli/blockchain.git
-   cd blockchain-python
+   cd blockchain
 
 ---
 
