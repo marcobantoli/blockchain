@@ -17,11 +17,20 @@ This project demonstrates a simple blockchain implementation using Python. It in
 
 ### Prerequisites
 - Python 3.x installed on your machine.
-- A basic understanding of Python programming and blockchain concepts.
 
 ### Installation
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/your-username/blockchain-python.git
+   git clone https://github.com/marcobantoli/blockchain.git
    cd blockchain-python
+
+---
+
+## Usage 📜
+### Running the Blockchain
+1. Open the terminal and navigate to the project directory.
+2. Run the main script
+   ``` bash
+   python blockchain.py
+3. Interact with the blockchain by adding transactions, mining blocks, and viewing the chain.
